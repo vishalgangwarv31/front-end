@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import AdminMenu from "../../component/admin/AdminMenu";
 
 type Order = {
     id: number;
@@ -49,33 +50,44 @@ const GetOrders = () => {
 
     return (
         <div>
-            {orders.map(order => (
-                <div key={order.id}>
-                    <p>ID: {order.id}</p>
-                    <p>User ID: {order.userId}</p>
-                    <p>Firm ID: {order.firmId}</p>
-                    <p>Date of Order: {order.dateOfOrder}</p>
-                    <p>Type of Order: {order.typeOfOrder}</p>
-                    <p>Payment Expected: {order.payementExpected}</p>
-                    <p>Amount Charged: {order.amountCharged}</p>
-                    <p>Amount Paid: {order.amountPaid}</p>
-                    <p>Order Status: {order.orderStatus}</p>
-                    <p>Comment Status Cycle: {order.commentStatusCycle.join(', ')}</p>
-                    <p>Date of Expectation: {order.dateOdExpectation}</p>
-                    <p>Document Provided: {order.documentProvided.join(', ')}</p>
-                    <p>Invoice Uploaded: {order.invoiceUploaded.join(', ')}</p>
-                    <p>File Uploaded: {order.fileUploaded.join(', ')}</p>
-                    <p>Next Action Lawyer: {order.nextActionLawyer}</p>
-                    <p>Next Action Client: {order.nextActionClient}</p>
-                    <p>Govt App Number: {order.govtAppNumber}</p>
-                    <p>Date of Filling: {order.dateOfFilling}</p>
-                    <p>Lawyer Reference Number: {order.lawyerRefrenceNumber}</p>
-                    <p>INM Number: {order.inmNumber}</p>
-                    <p>Order Complete Date: {order.orderCompleteDate}</p>
-                    <p>Created At: {order.createdAt}</p>
+            <AdminMenu/>
+
+            <div className="get-user-container">
+                <h2>Orders</h2>
+                <div className="order-list">
+                {orders.map(order => (
+                        <div key={order.id} className="order-item">
+                            <p><strong>ID:</strong> {order.id}</p>
+                            <p><strong>User ID:</strong> {order.userId}</p>
+                            <p><strong>Firm ID:</strong> {order.firmId}</p>
+                            <p><strong>Date of Order:</strong> {order.dateOfOrder}</p>
+                            <p><strong>Type of Order:</strong> {order.typeOfOrder}</p>
+                            <p><strong>Payment Expected:</strong> {order.payementExpected}</p>
+                            <p><strong>Amount Charged:</strong> {order.amountCharged}</p>
+                            <p><strong>Amount Paid:</strong> {order.amountPaid}</p>
+                            <p><strong>Order Status:</strong> {order.orderStatus}</p>
+                            <p><strong>Comment Status Cycle:</strong> {order.commentStatusCycle.join(', ')}</p>
+                            <p><strong>Date of Expectation:</strong> {order.dateOdExpectation}</p>
+                            <p><strong>Document Provided:</strong> {order.documentProvided.join(', ')}</p>
+                            <p><strong>Invoice Uploaded:</strong> {order.invoiceUploaded.join(', ')}</p>
+                            <p><strong>File Uploaded:</strong> {order.fileUploaded.join(', ')}</p>
+                            <p><strong>Next Action Lawyer:</strong> {order.nextActionLawyer}</p>
+                            <p><strong>Next Action Client:</strong> {order.nextActionClient}</p>
+                            <p><strong>Govt App Number:</strong> {order.govtAppNumber}</p>
+                            <p><strong>Date of Filling:</strong> {order.dateOfFilling}</p>
+                            <p><strong>Lawyer Reference Number:</strong> {order.lawyerRefrenceNumber}</p>
+                            <p><strong>INM Number:</strong> {order.inmNumber}</p>
+                            <p><strong>Order Complete Date:</strong> {order.orderCompleteDate}</p>
+                            <p><strong>Created At:</strong> {order.createdAt}</p>
+                        </div>
+                    ))}
                 </div>
-            ))}
+                
+            </div>
+
         </div>
+
+
     );
 };
 

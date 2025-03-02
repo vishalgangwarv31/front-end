@@ -58,7 +58,7 @@ const UserOrder = () => {
     return (
         <div>
             <UserMenu />
-            <div className="get-user-container">
+            <div className="get-user-container"> 
                 <h2>Orders</h2>
                 <div className="order-list">
                     {orders.map(order => (
