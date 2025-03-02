@@ -1,0 +1,105 @@
+.get-user-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+
+/* Heading */
+.get-user-container h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #2E384D;
+    font-weight: bold;
+}
+
+/* User List */
+.get-user-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Each User Card */
+.get-user-item {
+    border: none;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #E3E6ED, #F7F9FC);
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.get-user-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* User Details */
+.get-user-item p {
+    margin: 5px 0;
+    font-size: 15px;
+    color: #444;
+    display: flex;
+    align-items: center;
+}
+
+/* Highlighting important info */
+.get-user-item p strong {
+    color: #2E384D;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .get-user-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .get-user-item {
+        padding: 12px;
+    }
+
+    .get-user-item p {
+        font-size: 14px;
+    }
+}
+
+/* Loading Container */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 18px;
+    font-weight: bold;
+    color: #585E6C;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    position: relative;
+}
+
+/* Loading Animation */
+.loading::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    margin-left: 8px;
+    border-radius: 50%;
+    background: #585E6C;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+}

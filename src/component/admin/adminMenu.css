@@ -1,0 +1,67 @@
+/* Menu Container */
+.menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #585E6C;
+    padding: 15px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Menu List */
+  .menu-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 20px; /* Space between menu items */
+  }
+  
+  /* Menu Item */
+  .menu-item a {
+    text-decoration: none;
+    color: #ffffff;
+    background: linear-gradient(135deg, #B5BBC9, #585E6C);
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Hover Effect with Smooth Transformations */
+  .menu-item a:hover {
+    background: linear-gradient(135deg, #A1A7B5, #484E5A); /* Subtle color shift */
+    color: #ffffff;
+    transform: translateY(-4px) scale(1.05); /* Floating & slight scaling */
+    box-shadow: 6px 8px 16px rgba(0, 0, 0, 0.25); /* Deeper shadow */
+  }
+  
+  /* Underline Effect with Expand Animation */
+  .menu-item a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    width: 0;
+    height: 3px;
+    background: #ffffff;
+    transition: width 0.4s ease-out, left 0.4s ease-out;
+  }
+  
+  .menu-item a:hover::after {
+    width: 100%;
+    left: 0;
+  }
+  
+  /* Soft Active Animation on Click */
+  .menu-item a:active {
+    transform: scale(0.98); /* Subtle press-down effect */
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  

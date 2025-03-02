@@ -1,0 +1,143 @@
+.update-firm-container {
+    max-width: 60vw;
+    margin: 50px auto;
+    padding: 30px;
+    padding-right: 50px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.update-firm-container h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* Form group */
+.form-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+/* Labels */
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Input fields */
+.form-input, .form-file {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+}
+
+/* Checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.form-checkbox {
+    margin-left: 10px;
+    transform: scale(1.2);
+}
+
+/* Submit Button */
+.form-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4a4e57; /* Dark grey (similar to the image) */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-button:hover {
+    background-color: #3a3d45;
+}
+
+/* Status message */
+.update-status {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* 11111111111111111111111111 */
+.get-user-container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Heading */
+.get-user-container h2 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Order List */
+.order-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Each Order Card */
+.order-item {
+    background: linear-gradient(135deg, #E3E6ED, #F7F9FC);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Order Details */
+.order-item p {
+    margin: 5px 0;
+    font-size: 15px;
+    color: #333;
+}
+
+/* Highlighting Labels */
+.order-item p strong {
+    font-weight: 600;
+    color: #000;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .get-user-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .order-item {
+        padding: 15px;
+    }
+
+    .order-item p {
+        font-size: 14px;
+    }
+}

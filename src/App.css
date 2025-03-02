@@ -1,0 +1,48 @@
+.main-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+  
+  nav.user-select {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 380px;
+  }
+  
+  .user-type-heading {
+    margin-bottom: 15px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  
+  .link-container {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .link-container .link-item {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+  
+  .link-container li a {
+    display: block;
+    text-decoration: none;
+    color: #ffffff;
+    background: #585E6C;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .link-container li a:hover {
+    background: #434854;
+  }
+
+
+

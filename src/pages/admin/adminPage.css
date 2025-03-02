@@ -1,0 +1,137 @@
+/* Feature Container */
+.feature-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.feature-heading {
+    font-size: 30px;
+    margin: 10px 0;
+    color: black;
+}
+
+/* Form Items */
+.feature-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    width: 95%;
+}
+
+/* Labels */
+.feature-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #585E6C;
+}
+
+/* Input Fields */
+.feature-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #585E6C;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #fff;
+    color: #333;
+}
+
+/* Submit Button */
+.feature-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #585E6C;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.feature-button:hover {
+    background: #404552;
+}
+
+.feature-container {
+    max-width: 400px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #585E6C;
+}
+
+.feature-item-container-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.feature-list-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #585E6C;
+    margin-bottom: 5px;
+}
+
+.feature-item-container-list select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #B5BBC9;
+    border-radius: 5px;
+    font-size: 14px;
+    background: #fff;
+    color: #333;
+    cursor: pointer;
+    appearance: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item-container-list select:focus {
+    border-color: #585E6C;
+    outline: none;
+    box-shadow: 0 0 5px rgba(88, 94, 108, 0.5);
+}
+
+.feature-item-container-list select:hover,
+.feature-item-container-list select:focus {
+    border-color: #585E6C;
+    outline: none;
+    box-shadow: 0 0 5px rgba(88, 94, 108, 0.3);
+}
+
+/* Submit Button */
+.feature-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #585E6C;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Button Hover */
+.feature-button:hover {
+    background: #404552;
+}
