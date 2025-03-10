@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminMenu from '../../component/admin/AdminMenu';
+import { useParams } from 'react-router-dom';
 
-const CreateUser: React.FC = () => {
+const UpdateUser: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,6 +25,62 @@ const CreateUser: React.FC = () => {
     panCard: null,
     udhyanFile: null
   });
+  const [existingFiles, setExistingFiles] = useState<{ [key: string]: string[] }>({
+    tdsFile: [],
+    gstFile: [],
+    ndaFile: [],
+    dpiitFile: [],
+    agreementFile: [],
+    qunatifoFile: [],
+    panCard: [],
+    udhyanFile: []
+  });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem('adminToken');
+        const response = await axios.get(`http://localhost:3000/api/admin/get-user/${id}`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (response.status === 200) {
+          const user = response.data.user;
+          console.log(response.data.user)
+          setName(user.name);
+          setEmail(user.email);
+          setType(user.type);
+          setPocPhone(user.pocPhone);
+          setPocName(user.pocName);
+          setGstNumber(user.gstNumber);
+          setDpiit(user.dpiit);
+          setDpiitDate(user.dpiitDate ? new Date(user.dpiitDate).toISOString().split('T')[0] : '');
+          setExistingFiles({
+            tdsFile: user.tdsFile || [],
+            gstFile: user.gstFile || [],
+            ndaFile: user.ndaFile || [],
+            dpiitFile: user.dpiitFile || [],
+            agreementFile: user.agreementFile || [],
+            qunatifoFile: user.qunatifoFile || [],
+            panCard: user.panCard || [],
+            udhyanFile: user.udhyanFile || []
+          });
+        } else {
+          setMessage('Failed to fetch user details');
+        }
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          setMessage(error.response?.data?.message || 'An error occurred');
+        } else {
+          setMessage('An unexpected error occurred');
+        }
+      }
+    };
+
+    fetchUser();
+  }, [id]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, files: selectedFiles } = e.target;
@@ -38,7 +96,9 @@ const CreateUser: React.FC = () => {
     const formData = new FormData();
     formData.append('name', name);
     formData.append('email', email);
-    formData.append('password', password);
+    if (password) {
+      formData.append('password', password);
+    }
     formData.append('type', type);
     formData.append('pocPhone', pocPhone);
     formData.append('pocName', pocName);
@@ -60,7 +120,7 @@ const CreateUser: React.FC = () => {
 
     try {
       const token = localStorage.getItem('adminToken');
-      const response = await axios.post('http://localhost:3000/api/admin/create-user', formData, {
+      const response = await axios.put(`http://localhost:3000/api/admin/update-user/${id}`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
@@ -68,28 +128,9 @@ const CreateUser: React.FC = () => {
       });
 
       if (response.status === 200) {
-        setMessage('User created successfully');
-        setName('');
-        setEmail('');
-        setPassword('');
-        setType('');
-        setPocPhone('');
-        setPocName('');
-        setGstNumber('');
-        setDpiit(false);
-        setDpiitDate('');
-        setFiles({
-          tdsFile: null,
-          gstFile: null,
-          ndaFile: null,
-          dpiitFile: null,
-          agreementFile: null,
-          qunatifoFile: null,
-          panCard: null,
-          udhyanFile: null
-        });
+        setMessage('User updated successfully');
       } else {
-        setMessage('Failed to create user');
+        setMessage('Failed to update user');
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -105,7 +146,7 @@ const CreateUser: React.FC = () => {
       <AdminMenu/>
 
       <div className='feature-container'>
-          <h2 className='feature-heading'>Create User</h2>
+          <h2 className='feature-heading'>Update User</h2>
           <form onSubmit={handleSubmit}>
             <div className='feature-item-container'>
               <label className='feature-label'>Name:</label>
@@ -117,7 +158,7 @@ const CreateUser: React.FC = () => {
             </div>
             <div className='feature-item-container'>
               <label className='feature-label'>Password:</label>
-              <input className='feature-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              <input className='feature-input' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
             <div className='feature-item-container'>
               <label className='feature-label'>Type:</label>
@@ -149,9 +190,19 @@ const CreateUser: React.FC = () => {
               <div className='feature-item-container' key={key}>
                 <label className='feature-label'>{key}:</label>
                 <input className='feature-input' type="file" name={key} multiple onChange={handleFileChange} />
+                {existingFiles[key].length > 0 && (
+                  <div className='existing-files'>
+                    <p>Existing files:</p>
+                    <ul>
+                      {existingFiles[key].map((file, index) => (
+                        <li key={index}>{file}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             ))}
-            <button className='feature-button' type="submit">Create User</button>
+            <button className='feature-button' type="submit">Update User</button>
           </form>
           {message && <p>{message}</p>}
       </div>
@@ -159,4 +210,4 @@ const CreateUser: React.FC = () => {
   );
 };
 
-export default CreateUser;
+export default UpdateUser;

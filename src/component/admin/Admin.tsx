@@ -10,9 +10,13 @@ import CreateContractor from '../../pages/admin/CreateContractor';
 import CreateOrder from '../../pages/admin/CreateOrder';
 import UpdateOrder from '../../pages/admin/UpdateOrder';
 import GetContractor from '../../pages/admin/GetContractor';
-import GetOrders from '../../pages/admin/GetOrder';
-import ForgetPass from '../../pages/admin/forgetPass';
 import Reset from './Reset';
+import ForgetPass from '../../pages/admin/ForgetPass';
+import UserDetails from '../../pages/admin/UserDetail';
+import OrderDetail from '../../pages/admin/OrderDetail';
+import UpdateUser from '../../pages/admin/UpdateCustomer';
+import UpdateContractor from '../../pages/admin/updateContractor';
+import OrderList from '../../pages/admin/OrderList';
 
 const Admin: React.FC = () => {
   const location = useLocation();
@@ -36,14 +40,21 @@ const Admin: React.FC = () => {
 
         <Route element={<AdminPrivateRoute />}>
           <Route path="menu/*" element={<AdminMenu />} />
+          
           <Route path="get-user" element = {<GetUser/>} />
           <Route path="create-user" element ={ <CreateUser/> } />
-          <Route path="create-contractor" element ={ <CreateContractor/> } />
-          <Route path="create-order" element ={ <CreateOrder/> } />
-          <Route path="update-order" element ={ <UpdateOrder/> } />
-          <Route path="get-contractor" element ={ <GetContractor/> } />
-          <Route path="get-order" element ={ <GetOrders/> } />
+          <Route path="update-customer/:id" element ={ <UpdateUser/> } />
+          <Route path="user/:id" element ={ <UserDetails/> } />
 
+          <Route path="create-contractor" element ={ <CreateContractor/> } />
+          <Route path="get-contractor" element ={ <GetContractor/> } />
+          <Route path="update-contractor/:id" element ={ <UpdateContractor/> } />
+          <Route path='vendor-order/:id' element={<OrderList/>} />
+
+          <Route path="create-order" element ={ <CreateOrder/> } />
+          <Route path="update-order/:id" element ={ <UpdateOrder/> } />
+          <Route path="order/:id" element ={ <OrderDetail/> } />
+          
         </Route>
       </Routes>
     </div>
