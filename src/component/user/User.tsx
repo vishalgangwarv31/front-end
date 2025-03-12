@@ -30,9 +30,9 @@ const User = () =>{
                 <Route element={<UserPrivateRoute/>}>
                     <Route path="menu/*" element={ <UserMenu/> } />
                     <Route path="get-user" element = { <GetUser/> } />
-                    <Route path="update-user" element = { <UpdateUser/> } />
+                    <Route path="update-user/:id" element = { <UpdateUser/> } />
                     <Route path="orders" element = { <UserOrder/> } />
-                    <Route path="update-order" element = { <UpdateOrder/> } />
+                    <Route path="update-order/:id" element = { <UpdateOrder/> } />
                 </Route>
             </Routes>
         </div>

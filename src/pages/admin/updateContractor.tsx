@@ -13,6 +13,7 @@ type Contractor = {
     agreementFile: string | null;
     ndaFile: string | null;
     other: string | null;
+    isDeleted: boolean;
 };
 
 const UpdateContractor = () => {
@@ -28,7 +29,8 @@ const UpdateContractor = () => {
         startUp: false,
         agreementFile: null,
         ndaFile: null,
-        other: null
+        other: null,
+        isDeleted: false 
     });
 
     useEffect(() => {
@@ -47,7 +49,8 @@ const UpdateContractor = () => {
                     startUp: response.data.contractor.startUp,
                     agreementFile: null,
                     ndaFile: null,
-                    other: null
+                    other: null,
+                    isDeleted: response.data.contractor.isDeleted 
                 });
             } catch (err) {
                 setError("Failed to load data.");
@@ -85,6 +88,7 @@ const UpdateContractor = () => {
         formDataToSubmit.append("email", formData.email);
         formDataToSubmit.append("workType", formData.workType);
         formDataToSubmit.append("startUp", formData.startUp ? formData.startUp.toString() : "false");
+        formDataToSubmit.append("isDeleted", formData.isDeleted ? 'true' : 'false'); 
         if (formData.agreementFile) formDataToSubmit.append("agreementFile", formData.agreementFile);
         if (formData.ndaFile) formDataToSubmit.append("ndaFile", formData.ndaFile);
         if (formData.other) formDataToSubmit.append("other", formData.other);
@@ -133,6 +137,10 @@ const UpdateContractor = () => {
                         <label>
                             Startup Benefit:
                             <input type="checkbox" name="startUp" checked={formData.startUp} onChange={handleInputChange} />
+                        </label>
+                        <label>
+                            Inactive Status:
+                            <input type="checkbox" name="isDeleted" checked={formData.isDeleted} onChange={handleInputChange} /> {!formData.isDeleted ? <p>Active</p> : <p>Inactive</p>}
                         </label>
                         <label>
                             Agreement File:

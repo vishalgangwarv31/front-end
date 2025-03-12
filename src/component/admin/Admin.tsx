@@ -17,6 +17,7 @@ import OrderDetail from '../../pages/admin/OrderDetail';
 import UpdateUser from '../../pages/admin/UpdateCustomer';
 import UpdateContractor from '../../pages/admin/updateContractor';
 import OrderList from '../../pages/admin/OrderList';
+import UserVisible from '../../pages/admin/UserVisible';
 
 const Admin: React.FC = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const Admin: React.FC = () => {
           <Route path="create-user" element ={ <CreateUser/> } />
           <Route path="update-customer/:id" element ={ <UpdateUser/> } />
           <Route path="user/:id" element ={ <UserDetails/> } />
+          <Route path="visibility" element ={ <UserVisible/> } />
 
           <Route path="create-contractor" element ={ <CreateContractor/> } />
           <Route path="get-contractor" element ={ <GetContractor/> } />

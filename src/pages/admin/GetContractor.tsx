@@ -13,6 +13,7 @@ type Firm = {
     agreementFile: string | null;
     ndaFile: string | null;
     other: string | null;
+    isDeleted: boolean; 
 };
 
 const GetContractor = () => {
@@ -24,13 +25,14 @@ const GetContractor = () => {
     const [previousCursors, setPreviousCursors] = useState<number[]>([]);
     const [nameSearch, setNameSearch] = useState<string>("");
     const [emailSearch, setEmailSearch] = useState<string>("");
+    const [includeInactive, setIncludeInactive] = useState<boolean>(false); 
 
-    const fetchContractor = async (cursor: number | null, name: string = "", email: string = "") => {
+    const fetchContractor = async (cursor: number | null, name: string = "", email: string = "", includeInactive: boolean = false) => {
         try {
             const token = localStorage.getItem('adminToken');
             const response = await axios.get('http://localhost:3000/api/admin/get-contractor', {
                 headers: { 'Authorization': `Bearer ${token}` },
-                params: { cursor, limit: 2, name, email }
+                params: { cursor, limit: 2, name, email, isInactive: includeInactive }
             });
 
             setData(response.data.firms);
@@ -48,33 +50,37 @@ const GetContractor = () => {
     };
 
     useEffect(() => {
-        fetchContractor(null);
-    }, []);
+        fetchContractor(null, nameSearch, emailSearch, includeInactive);
+    }, [includeInactive]);
 
     const handleNextPage = () => {
         if (cursor) {
-            fetchContractor(cursor, nameSearch, emailSearch);
+            fetchContractor(cursor, nameSearch, emailSearch, includeInactive);
         }
     };
 
     const handlePrevPage = () => {
         const prevCursor = previousCursors[previousCursors.length - 2];
         setPreviousCursors(prev => prev.slice(0, -1));
-        fetchContractor(prevCursor || null, nameSearch, emailSearch);
+        fetchContractor(prevCursor || null, nameSearch, emailSearch, includeInactive);
     };
 
     const handleNameSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setNameSearch(value);
-        fetchContractor(null, value, emailSearch);
+        fetchContractor(null, value, emailSearch, includeInactive);
         setPreviousCursors([]);
     };
 
     const handleEmailSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setEmailSearch(value);
-        fetchContractor(null, nameSearch, value);
+        fetchContractor(null, nameSearch, value, includeInactive);
         setPreviousCursors([]);
+    };
+
+    const handleIncludeInactiveChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIncludeInactive(e.target.checked);
     };
 
     if (loading) {
@@ -104,6 +110,14 @@ const GetContractor = () => {
                     onChange={handleEmailSearchChange}
                     className="search-input"
                 />
+                <label>
+                    <input
+                        type="checkbox"
+                        checked={includeInactive}
+                        onChange={handleIncludeInactiveChange}
+                    />
+                    Include Inactive Vendors
+                </label>
                 <ul className="get-user-list">
                     {data.map(firm => (
                         <li key={firm.id} className="get-user-item">
@@ -114,6 +128,7 @@ const GetContractor = () => {
                             <p><strong>Agreement File:</strong> {firm.agreementFile ? <a href={firm.agreementFile}>Download</a> : 'Not Available'}</p>
                             <p><strong>NDA File:</strong> {firm.ndaFile ? <a href={firm.ndaFile}>Download</a> : 'Not Available'}</p>
                             <p><strong>Other File:</strong> {firm.other ? <a href={firm.other}>Download</a> : 'Not Available'}</p>
+                            <p><strong>Status:</strong> {firm.isDeleted ? 'Inactive' : 'Active'}</p> 
                             <Link to={`/api/admin/update-contractor/${firm.id}`} className="update-button">Update</Link>
                             <Link to={`/api/admin/vendor-order/${firm.id}`} className="order-list-button">Order List</Link>
                         </li>

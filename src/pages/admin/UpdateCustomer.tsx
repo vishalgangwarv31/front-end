@@ -14,6 +14,7 @@ const UpdateUser: React.FC = () => {
   const [gstNumber, setGstNumber] = useState('');
   const [dpiit, setDpiit] = useState(false);
   const [dpiitDate, setDpiitDate] = useState('');
+  const [isDeleted, setIsDeleted] = useState(false);
   const [message, setMessage] = useState('');
   const [files, setFiles] = useState<{ [key: string]: FileList | null }>({
     tdsFile: null,
@@ -57,6 +58,7 @@ const UpdateUser: React.FC = () => {
           setGstNumber(user.gstNumber);
           setDpiit(user.dpiit);
           setDpiitDate(user.dpiitDate ? new Date(user.dpiitDate).toISOString().split('T')[0] : '');
+          setIsDeleted(user.isDeleted);
           setExistingFiles({
             tdsFile: user.tdsFile || [],
             gstFile: user.gstFile || [],
@@ -103,7 +105,8 @@ const UpdateUser: React.FC = () => {
     formData.append('pocPhone', pocPhone);
     formData.append('pocName', pocName);
     formData.append('gstNumber', gstNumber);
-    formData.append('dpiit', dpiit.toString());
+    formData.append('dpiit', dpiit ? 'true' : 'false');
+    formData.append('isDeleted', isDeleted.toString());
     if (dpiit && dpiitDate) {
       const formattedDate = new Date(dpiitDate).toISOString();
       formData.append('dpiitDate', formattedDate);
@@ -141,10 +144,11 @@ const UpdateUser: React.FC = () => {
     }
   };
 
+
   return (
     <div className='parent-feature-container'>
       <AdminMenu/>
-
+  
       <div className='feature-container'>
           <h2 className='feature-heading'>Update User</h2>
           <form onSubmit={handleSubmit}>
@@ -186,6 +190,10 @@ const UpdateUser: React.FC = () => {
                 <input className='feature-input' type="date" value={dpiitDate} onChange={(e) => setDpiitDate(e.target.value)} />
               </div>
             )}
+          <div className='feature-item-container'>
+            <label className='feature-label'>Inactive Status:</label>
+            <input className='feature-input' type="checkbox" checked={isDeleted} onChange={(e) => setIsDeleted(e.target.checked)} /> {!isDeleted ? <p>Active</p> : <p>Inactive</p>}
+          </div>
             {Object.keys(files).map(key => (
               <div className='feature-item-container' key={key}>
                 <label className='feature-label'>{key}:</label>
@@ -208,6 +216,6 @@ const UpdateUser: React.FC = () => {
       </div>
     </div>
   );
-};
+};  
 
 export default UpdateUser;

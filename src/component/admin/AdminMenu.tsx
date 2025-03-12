@@ -31,6 +31,7 @@ const AdminMenu: React.FC = () => {
               <ul className='dropdown-menu'>
                 <li className='dropdown-item'><Link to="/api/admin/get-user">Customer Info</Link></li>
                 <li className='dropdown-item'><Link to="/api/admin/create-user">Create Customer</Link></li>
+                <li className='dropdown-item'><Link to="/api/admin/visibility">Visibility</Link></li>
               </ul>
             )}
           </li>
